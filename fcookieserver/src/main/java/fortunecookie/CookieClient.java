@@ -3,12 +3,10 @@ package fortunecookie;
 import java.io.*;
 import java.net.*;
 
-// java -cp fortunecookie.jar fc.Client locahost:12345
-//        0       1                2          3
 public class CookieClient {
     public static void main(String[] args) throws IOException {
-        String hostAddress = args[3].split(":")[0];
-        int port = Integer.parseInt(args[3].split(":")[1]);
+        String hostAddress = args[0].split(":")[0];
+        int port = Integer.parseInt(args[0].split(":")[1]);
 
         Socket socket = new Socket(hostAddress, port);
         try (OutputStream os = socket.getOutputStream(); InputStream is = socket.getInputStream()) {
