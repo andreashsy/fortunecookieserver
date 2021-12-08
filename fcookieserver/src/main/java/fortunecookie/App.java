@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class App 
 {
-    public static void main( String[] args ) throws IOException{
+    public static void main(String[] args) throws IOException{
 
         //create cookie directory
         String Wdir = System.getProperty("user.dir") + "\\cookie";
