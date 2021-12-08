@@ -10,8 +10,8 @@ public class Cookie {
         this.initialCookie = "cookie1,cookie2,cookie3,cookie4";
     }
 
-    public void createCookie(String dir) throws IOException {
-        File cookieFile = new File("" + dir + "\\cookie_file.txt");
+    public void createCookie(String dir, String fileName) throws IOException {
+        File cookieFile = new File("" + dir + "\\" + fileName);
         cookieFile.createNewFile();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dir + "\\cookie_file.txt"))) {
             for (String item: initialCookie.split(",")) {
@@ -22,9 +22,9 @@ public class Cookie {
         }
     }
 
-    public String loadFile(String dir) throws IOException {
+    public String loadFile(String dir, String fileName) throws IOException {
 
-        try(BufferedReader br = new BufferedReader(new FileReader(dir + "\\cookie_file.txt"))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(dir + "\\" + fileName))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             

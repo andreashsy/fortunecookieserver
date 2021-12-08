@@ -13,8 +13,8 @@ public class App
 
         Cookie cookie = new Cookie();
 
-        cookie.createCookie(Wdir);
-        String cL = cookie.loadFile(Wdir);
+        cookie.createCookie(Wdir, "cookie_file.txt");
+        String cL = cookie.loadFile(Wdir, "cookie_file.txt");
         System.out.println(cL);
 
         cookie.addCookie("newcookie", Wdir);

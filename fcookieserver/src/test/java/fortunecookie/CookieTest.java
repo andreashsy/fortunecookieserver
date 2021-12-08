@@ -14,7 +14,7 @@ public class CookieTest {
         String Wdir = System.getProperty("user.dir") + "\\cookietest";
         new File(Wdir).mkdirs();
         Cookie createTest = new Cookie();
-        createTest.createCookie(Wdir);
+        createTest.createCookie(Wdir, "cookie_file.txt");
         File createdTest = new File(Wdir + "\\cookie_file.txt");
         assertTrue(createdTest.exists());
         System.out.println("Create test passed");
@@ -24,8 +24,8 @@ public class CookieTest {
         String Wdir = System.getProperty("user.dir") + "\\cookietest";
         new File(Wdir).mkdirs();
         Cookie loadTest = new Cookie();
-        loadTest.createCookie(Wdir);
-        String loadedCookie = loadTest.loadFile(Wdir).replace("\n", "").replace("\r", "");
+        loadTest.createCookie(Wdir, "cookie_file.txt");
+        String loadedCookie = loadTest.loadFile(Wdir, "cookie_file.txt").replace("\n", "").replace("\r", "");
         System.out.println(loadedCookie);
         assertTrue(loadedCookie.equals("cookie1cookie2cookie3cookie4"));
         System.out.println("Load test passed");
@@ -35,8 +35,8 @@ public class CookieTest {
         String Wdir = System.getProperty("user.dir") + "\\cookietest";
         new File(Wdir).mkdirs();
         Cookie randTest = new Cookie();
-        randTest.createCookie(Wdir);
-        String randList = randTest.loadFile(Wdir);
+        randTest.createCookie(Wdir, "cookie_file.txt");
+        String randList = randTest.loadFile(Wdir, "cookie_file.txt");
         String randCookie = randTest.randomCookie(randList);
         String[] originalList = "cookie1,cookie2,cookie3,cookie4".split(",");
         assertTrue(Arrays.stream(originalList).anyMatch(randCookie::equals));
@@ -47,9 +47,9 @@ public class CookieTest {
         String Wdir = System.getProperty("user.dir") + "\\cookietest";
         new File(Wdir).mkdirs();
         Cookie addTest = new Cookie();
-        addTest.createCookie(Wdir);
+        addTest.createCookie(Wdir, "cookie_file.txt");
         addTest.addCookie("addcookietest", Wdir);
-        String addTestList = addTest.loadFile(Wdir);
+        String addTestList = addTest.loadFile(Wdir, "cookie_file.txt");
         assertTrue(addTestList.contains("addcookietest"));
         System.out.println("Add cookie test passed");
     }

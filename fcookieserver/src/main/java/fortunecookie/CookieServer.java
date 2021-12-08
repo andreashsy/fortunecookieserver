@@ -2,20 +2,19 @@ package fortunecookie;
 
 import java.io.*;
 import java.net.*;
-// java -cp fortunecookie.jar fc.Server 12345 cookie_file.txt
-//        0        1               2       3         4
+
 public class CookieServer {
     public static void main(String[] args) throws IOException {
-        for (String i: args) {
-            System.out.println(i);
-        }
         String Wdir = System.getProperty("user.dir") + "\\cookie";
+        String cookieFilename = args[1];
         new File(Wdir).mkdirs();
         
         Cookie cookie = new Cookie();
-        cookie.createCookie(Wdir);
+        cookie.createCookie(Wdir, cookieFilename);
 
-        int port = Integer.parseInt(args[3]);
+        System.out.println("Args: " + String.join(",",args));
+
+        int port = Integer.parseInt(args[0]);
         System.out.println("Listening on " + port);
         ServerSocket serversocket = new ServerSocket(port);
         Socket socket = serversocket.accept();
@@ -33,7 +32,7 @@ public class CookieServer {
                 System.out.println("Msg: " + line);
 
                 if (line.equals("get-cookie")) {
-                    String listOfCookies = cookie.loadFile(Wdir);
+                    String listOfCookies = cookie.loadFile(Wdir, cookieFilename);
                     String returnCookie = cookie.randomCookie(listOfCookies);
                     System.out.println("Sending cookie " + returnCookie);
                     dos.writeUTF("cookie-text " + returnCookie);
