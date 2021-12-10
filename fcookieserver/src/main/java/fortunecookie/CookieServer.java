@@ -42,6 +42,7 @@ public class CookieServer {
                             lastCookieTime = System.nanoTime();
                         } else {
                             timeDiff = System.nanoTime() - lastCookieTime;
+                            lastCookieTime =System.nanoTime();
                             System.out.println("Seconds since last get-cookie: " + timeDiff/nanoPerSec);
                             if (timeDiff/nanoPerSec >= timeOut) {
                                 loginhandler.logOut();
